@@ -1,18 +1,21 @@
 # Nuclear Option – Repair Progress
 
-Shows building repair progress bars when M12 Jackknife (combat engineering vehicle) repairs damaged buildings.
+Shows building damage state and repair progress. Damaged buildings are visually tinted darker/redder, and health bars appear during active repairs.
 
 ## Features
 
-- Displays a health bar above buildings being repaired
-- Shows building name and repair percentage
+- **Damage Tint**: All damaged buildings get a dark reddish tint based on remaining health
+- **Ember Glow**: Buildings below 50% health emit a warm orange-red glow
+- **Health Bars**: Progress bars above buildings being actively repaired by M12 Jackknife
+- Building name and repair percentage display
 - Color gradient: red (0%) → yellow (50%) → green (100%)
 - Auto-detects active repairs via Harmony patch + Repairer scanning
-- Toggle UI with **F9**
+- Toggle all effects with **F9**
+- Configurable via BepInEx config file
 
 ## Requirements
 
-- [Nuclear Option](https://store.steampowered.com/app/2230590/Nuclear_Option/) (Steam, Early Access 0.32.5+)
+- [Nuclear Option](https://store.steampowered.com/app/2230590/Nuclear_Option/) (Steam)
 - [BepInEx 5.x](https://github.com/BepInEx/BepInEx/releases)
 
 ## Installation
@@ -23,16 +26,38 @@ Shows building repair progress bars when M12 Jackknife (combat engineering vehic
    ```
    [Game Folder]\BepInEx\plugins\
    ```
-4. Launch the game — repair progress bars will appear automatically when buildings are being repaired.
+4. Launch the game — damage tinting appears on all damaged buildings, and repair bars show during active repairs.
 
 ## In-Game Hotkey
 
 | Key | Function |
 |-----|----------|
-| `F9` | Toggle repair progress UI on/off |
+| `F9` | Toggle all effects on/off |
+
+## Configuration
+
+Config file: `BepInEx\config\com.noms.repairprogress.cfg`
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| HealthBars | true | Show health bars during active repairs |
+| DamageTint | true | Tint damaged buildings darker/redder |
+| ScanRange | 500 | Max distance (meters) for damage effects |
+
+## Changelog
+
+### v1.1.0
+- Damage tint: all damaged buildings visually darken based on health
+- Ember glow: orange-red emission below 50% health
+- Config options: toggle health bars, damage tint, scan range
+- Health bars now respect ScanRange setting
+
+### v1.0.0
+- Initial release: repair progress health bars
 
 ## Notes
 
 - Works in singleplayer and as host in multiplayer.
-- Progress bars appear when any M12 Jackknife begins repairing a damaged building.
-- Bars automatically disappear when repair is complete.
+- Damage tint applies to ALL damaged buildings within scan range, not just ones being repaired.
+- Tint clears automatically when buildings are fully repaired.
+- F9 disables all effects and clears all tints immediately.
